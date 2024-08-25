@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../buttons/custom_outlined_button.dart';
-import '../buttons/link_text.dart';
-import '../inputs/custom_inputs.dart';
+import '../../common/buttons/custom_outlined_button.dart';
+import '../../common/buttons/link_text.dart';
+import '../../common/inputs/custom_inputs.dart';
 
 class RegisterView extends StatelessWidget {
   const RegisterView({super.key});

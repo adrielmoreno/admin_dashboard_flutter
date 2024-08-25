@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../ui/views/login_view.dart';
-import '../ui/views/no_page_found_view.dart';
-import '../ui/views/register_view.dart';
+import '../../presentation/ui/views/login_view.dart';
+import '../../presentation/ui/views/no_page_found_view.dart';
+import '../../presentation/ui/views/register_view.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
