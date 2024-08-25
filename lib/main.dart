@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'router/app_router.dart';
-import 'ui/layouts/auth/auth_layout.dart';
+import 'external/router/app_router.dart';
+import 'presentation/ui/layouts/auth/auth_layout.dart';
 
 void main() {
   runApp(const MyApp());
