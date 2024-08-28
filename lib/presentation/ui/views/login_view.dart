@@ -17,7 +17,7 @@ class LoginView extends StatelessWidget {
       create: (_) => LoginFormProvider(),
       child: Builder(builder: (context) {
         final loginFormProvider =
-            Provider.of<LoginFormProvider>(context, listen: true);
+            Provider.of<LoginFormProvider>(context, listen: false);
         return Container(
           margin: const EdgeInsets.only(top: 100),
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -56,6 +56,7 @@ class LoginView extends StatelessWidget {
                           if (value == null || value.isEmpty) {
                             return 'Ingrese su contraseña';
                           }
+
                           if (value.length < 6) {
                             return 'La contraseña debe de ser de 6 caractares';
                           }
