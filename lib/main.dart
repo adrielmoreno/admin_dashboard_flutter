@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'external/di/inject.dart';
 import 'external/router/app_router.dart';
 import 'presentation/ui/layouts/auth/auth_layout.dart';
 
 void main() {
+  Inject().setup();
   runApp(const MyApp());
 }
 

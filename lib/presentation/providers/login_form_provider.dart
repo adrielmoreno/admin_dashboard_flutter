@@ -1,19 +1,23 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class LoginFormProvider extends ChangeNotifier {
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+import '../../external/di/inject.dart';
+import 'auth_provider.dart';
 
+class LoginFormProvider extends ChangeNotifier {
+  final authProvider = getIt<AuthProvider>();
+
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String email = '';
   String password = '';
 
   validateForm() {
     if (formKey.currentState!.validate()) {
       log('Form valid... Login');
-      log(email);
-      log(password);
+      authProvider.login(email, password);
     } else {
       log('Invalid form');
     }
