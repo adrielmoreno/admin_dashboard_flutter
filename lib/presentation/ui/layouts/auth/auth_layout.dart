@@ -14,20 +14,21 @@ class AuthLayout extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+        backgroundColor: Colors.black,
         body: Scrollbar(
-      // isAlwaysShown: true,
-      child: ListView(
-        physics: const ClampingScrollPhysics(),
-        children: [
-          (size.width > 1000)
-              ? _DesktopBody(child: child)
-              : _MobileBody(child: child),
+          // isAlwaysShown: true,
+          child: ListView(
+            physics: const ClampingScrollPhysics(),
+            children: [
+              (size.width > 1000)
+                  ? _DesktopBody(child: child)
+                  : _MobileBody(child: child),
 
-          // LinksBar
-          const LinksBar()
-        ],
-      ),
-    ));
+              // LinksBar
+              const LinksBar()
+            ],
+          ),
+        ));
   }
 }
 
@@ -73,7 +74,7 @@ class _DesktopBody extends StatelessWidget {
     return Container(
       width: size.width,
       height: size.height * 0.95,
-      color: Colors.red,
+      color: Colors.black,
       child: Row(
         children: [
           // Twitter Background
