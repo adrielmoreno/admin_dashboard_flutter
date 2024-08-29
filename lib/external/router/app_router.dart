@@ -5,8 +5,11 @@ import '../../presentation/ui/views/login_view.dart';
 import '../../presentation/ui/views/no_page_found_view.dart';
 import '../../presentation/ui/views/register_view.dart';
 
+final _rootKey = GlobalKey<NavigatorState>();
+
 class AppRouter {
   static final GoRouter router = GoRouter(
+    navigatorKey: _rootKey,
     initialLocation: '/auth/login',
     routes: [
       // Auth

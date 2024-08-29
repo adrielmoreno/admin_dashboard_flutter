@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
+import 'data/datasources/local/local_storage_service.dart';
 import 'external/di/inject.dart';
 import 'external/router/app_router.dart';
 import 'presentation/ui/layouts/auth/auth_layout.dart';
 
-void main() {
+void main() async {
+  await LocalStorageService.configurePrefs();
+
   Inject().setup();
+
   runApp(const MyApp());
 }
 

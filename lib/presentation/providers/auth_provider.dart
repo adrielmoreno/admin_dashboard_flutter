@@ -1,6 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+
+import '../../data/datasources/local/local_storage_service.dart';
 
 class AuthProvider extends ChangeNotifier {
   String? _token;
@@ -8,7 +8,7 @@ class AuthProvider extends ChangeNotifier {
   login(String email, String password) {
     // TODO: PETICIÓN HTTP
     _token = 'adkafañfalsñfjaf';
-    log("jwt: $_token");
+    LocalStorageService.prefs.setString('token', '$_token');
     // navegar a dashboard
     notifyListeners();
   }
