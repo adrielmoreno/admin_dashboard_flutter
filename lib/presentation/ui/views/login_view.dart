@@ -7,6 +7,7 @@ import '../../common/buttons/custom_outlined_button.dart';
 import '../../common/buttons/link_text.dart';
 import '../../common/inputs/custom_inputs.dart';
 import '../../providers/login_form_provider.dart';
+import 'register_view.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -19,7 +20,7 @@ class LoginView extends StatelessWidget {
         final loginFormProvider =
             Provider.of<LoginFormProvider>(context, listen: false);
         return Container(
-          margin: const EdgeInsets.only(top: 100),
+          margin: const EdgeInsets.only(top: 40),
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Center(
             child: ConstrainedBox(
@@ -27,69 +28,72 @@ class LoginView extends StatelessWidget {
               child: Form(
                   autovalidateMode: AutovalidateMode.always,
                   key: loginFormProvider.formKey,
-                  child: Column(
-                    children: [
-                      // Email
-                      TextFormField(
-                        keyboardType: TextInputType.emailAddress,
-                        validator: (value) {
-                          if (!EmailValidator.validate('${value?.trim()}')) {
-                            return 'Email no válido';
-                          }
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        // Email
+                        TextFormField(
+                          keyboardType: TextInputType.emailAddress,
+                          validator: (value) {
+                            if (!EmailValidator.validate('${value?.trim()}')) {
+                              return 'Email no válido';
+                            }
 
-                          return null;
-                        },
-                        onChanged: (value) =>
-                            loginFormProvider.email = value.trim(),
-                        style: const TextStyle(color: Colors.white),
-                        decoration: CustomInputs.loginInputDecoration(
-                            hint: 'Ingrese su correo',
-                            label: 'Email',
-                            icon: Icons.email_outlined),
-                      ),
+                            return null;
+                          },
+                          onChanged: (value) =>
+                              loginFormProvider.email = value.trim(),
+                          style: const TextStyle(color: Colors.white),
+                          decoration: CustomInputs.loginInputDecoration(
+                              hint: 'Ingrese su correo',
+                              label: 'Email',
+                              icon: Icons.email_outlined),
+                        ),
 
-                      const SizedBox(height: 20),
+                        const SizedBox(height: 20),
 
-                      // Password
-                      TextFormField(
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Ingrese su contraseña';
-                          }
+                        // Password
+                        TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Ingrese su contraseña';
+                            }
 
-                          if (value.length < 6) {
-                            return 'La contraseña debe de ser de 6 caractares';
-                          }
+                            if (value.length < 6) {
+                              return 'La contraseña debe de ser de 6 caractares';
+                            }
 
-                          return null;
-                        },
-                        onChanged: (value) =>
-                            loginFormProvider.password = value,
-                        obscureText: true,
-                        keyboardType: TextInputType.visiblePassword,
-                        style: const TextStyle(color: Colors.white),
-                        decoration: CustomInputs.loginInputDecoration(
-                            hint: '*********',
-                            label: 'Contraseña',
-                            icon: Icons.lock_outline_rounded),
-                      ),
+                            return null;
+                          },
+                          onChanged: (value) =>
+                              loginFormProvider.password = value,
+                          obscureText: true,
+                          keyboardType: TextInputType.visiblePassword,
+                          style: const TextStyle(color: Colors.white),
+                          decoration: CustomInputs.loginInputDecoration(
+                              hint: '*********',
+                              label: 'Contraseña',
+                              icon: Icons.lock_outline_rounded),
+                        ),
 
-                      const SizedBox(height: 20),
-                      CustomOutlinedButton(
-                        onPressed: () {
-                          loginFormProvider.validateForm();
-                        },
-                        text: 'Ingresar',
-                      ),
+                        const SizedBox(height: 20),
+                        CustomOutlinedButton(
+                          onPressed: () {
+                            loginFormProvider.validateForm();
+                          },
+                          text: 'Ingresar',
+                        ),
 
-                      const SizedBox(height: 20),
-                      LinkText(
-                        text: 'Nueva cuenta',
-                        onPressed: () {
-                          context.goNamed('register');
-                        },
-                      )
-                    ],
+                        const SizedBox(height: 20),
+                        LinkText(
+                          text: 'Nueva cuenta',
+                          onPressed: () {
+                            context.goNamed('register',
+                                extra: {const RegisterView()});
+                          },
+                        )
+                      ],
+                    ),
                   )),
             ),
           ),
