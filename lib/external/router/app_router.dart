@@ -12,6 +12,8 @@ import '../../presentation/ui/views/register_view.dart';
 import '../di/inject.dart';
 
 final _rootKey = GlobalKey<NavigatorState>();
+final _authKey = GlobalKey<NavigatorState>();
+final _dashboardKey = GlobalKey<NavigatorState>();
 
 class AppRouter {
   static final GoRouter router = GoRouter(
@@ -23,8 +25,7 @@ class AppRouter {
 
       final authStatus = authProvider.authStatus;
 
-      final isGoingToLoginOrRegister = state.uri.toString() == '/auth/login' ||
-          state.uri.toString() == '/auth/register';
+      final isGoingToLoginOrRegister = state.uri.toString().contains('/auth');
 
       if (authStatus == AuthStatus.checking) {
         return state.uri.toString() != '/splash' ? '/splash' : null;
@@ -49,23 +50,41 @@ class AppRouter {
       // Splash
       _buildParent(path: '/splash', child: const SplashLayuot()),
 
-      // Auth
-      _buildParent(
-        path: '/auth',
-        child: const AuthLayout(child: LoginView()),
-        routes: [
-          _buildChild(
-              name: 'login', child: const AuthLayout(child: LoginView())),
-          _buildChild(
-              name: 'register', child: const AuthLayout(child: RegisterView())),
+      // ------ Auth --------
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, shell) => AuthLayout(navigationShell: shell),
+        branches: [
+          StatefulShellBranch(
+            navigatorKey: _authKey,
+            routes: [
+              _buildParent(
+                path: '/auth',
+                child: const LoginView(),
+                routes: [
+                  _buildChild(name: 'login', child: const LoginView()),
+                  _buildChild(name: 'register', child: const RegisterView()),
+                ],
+              ),
+            ],
+          )
         ],
       ),
 
-      // Dashboard
-      _buildParent(
-        path: '/dashboard',
-        child: const DashboardLayout(child: DashboardView()),
-        routes: [],
+      // ------ Dashboard --------
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, shell) =>
+            DashboardLayout(navigationShell: shell),
+        branches: [
+          StatefulShellBranch(
+            navigatorKey: _dashboardKey,
+            routes: [
+              _buildParent(
+                path: '/dashboard',
+                child: const DashboardView(),
+              ),
+            ],
+          )
+        ],
       ),
     ],
     errorBuilder: (context, state) => const NoPageFoundView(),

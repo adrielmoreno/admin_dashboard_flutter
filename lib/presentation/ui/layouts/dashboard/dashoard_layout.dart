@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class DashboardLayout extends StatelessWidget {
   const DashboardLayout({
     super.key,
-    required this.child,
+    required this.navigationShell,
   });
-  final Widget child;
+  final StatefulNavigationShell navigationShell;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class DashboardLayout extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text('Dashboard'),
-            Expanded(child: child),
+            Expanded(child: navigationShell),
           ],
         ),
       ),

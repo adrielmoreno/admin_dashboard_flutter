@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'widgets/background_twitter.dart';
 import 'widgets/custom_title.dart';
 import 'widgets/links_bar.dart';
 
 class AuthLayout extends StatelessWidget {
-  final Widget child;
+  final StatefulNavigationShell navigationShell;
 
-  const AuthLayout({super.key, required this.child});
+  const AuthLayout({super.key, required this.navigationShell});
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +22,8 @@ class AuthLayout extends StatelessWidget {
             physics: const ClampingScrollPhysics(),
             children: [
               (size.width > 1000)
-                  ? _DesktopBody(child: child)
-                  : _MobileBody(child: child),
+                  ? _DesktopBody(child: navigationShell)
+                  : _MobileBody(child: navigationShell),
 
               // LinksBar
               const LinksBar()
