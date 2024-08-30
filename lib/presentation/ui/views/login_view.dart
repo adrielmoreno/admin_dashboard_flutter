@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../../common/buttons/custom_outlined_button.dart';
 import '../../common/buttons/link_text.dart';
 import '../../common/inputs/custom_inputs.dart';
+import '../../common/theme/constants/app_dimens.dart';
 import '../../providers/login_form_provider.dart';
 import 'register_view.dart';
 
@@ -20,11 +21,12 @@ class LoginView extends StatelessWidget {
         final loginFormProvider =
             Provider.of<LoginFormProvider>(context, listen: false);
         return Container(
-          margin: const EdgeInsets.only(top: 40),
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          margin: const EdgeInsets.only(top: AppDimens.semiHuge),
+          padding: const EdgeInsets.symmetric(horizontal: AppDimens.semiBig),
           child: Center(
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 370),
+              constraints:
+                  const BoxConstraints(maxWidth: AppDimens.maxFormWidth),
               child: Form(
                   autovalidateMode: AutovalidateMode.always,
                   key: loginFormProvider.formKey,
@@ -50,7 +52,7 @@ class LoginView extends StatelessWidget {
                               icon: Icons.email_outlined),
                         ),
 
-                        const SizedBox(height: 20),
+                        const SizedBox(height: AppDimens.medium),
 
                         // Password
                         TextFormField(
@@ -76,7 +78,7 @@ class LoginView extends StatelessWidget {
                               icon: Icons.lock_outline_rounded),
                         ),
 
-                        const SizedBox(height: 20),
+                        const SizedBox(height: AppDimens.medium),
                         CustomOutlinedButton(
                           onPressed: () {
                             loginFormProvider.validateForm();
@@ -84,7 +86,7 @@ class LoginView extends StatelessWidget {
                           text: 'Ingresar',
                         ),
 
-                        const SizedBox(height: 20),
+                        const SizedBox(height: AppDimens.medium),
                         LinkText(
                           text: 'Nueva cuenta',
                           onPressed: () {

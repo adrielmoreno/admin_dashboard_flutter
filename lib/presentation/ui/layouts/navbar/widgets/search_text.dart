@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../common/inputs/custom_inputs.dart';
+import '../../../../common/theme/constants/app_dimens.dart';
 
 class SearchText extends StatelessWidget {
   const SearchText({super.key});
@@ -8,7 +9,7 @@ class SearchText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
+      height: AppDimens.semiHuge,
       decoration: buildBoxDecoration(),
       child: TextField(
         decoration: CustomInputs.searchInputDecoration(
@@ -18,6 +19,6 @@ class SearchText extends StatelessWidget {
   }
 
   BoxDecoration buildBoxDecoration() => BoxDecoration(
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(AppDimens.semiMedium),
       color: Colors.grey.withOpacity(0.1));
 }

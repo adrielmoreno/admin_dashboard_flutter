@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
+import '../../../common/theme/constants/app_dimens.dart';
 import '../../../providers/sidemenu_provider.dart';
 import '../navbar/navbar.dart';
 import '../sidebar/sidebar.dart';
@@ -26,7 +28,7 @@ class _DashboardLayoutState extends State<DashboardLayout>
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    final breakpoint = ResponsiveBreakpoints.of(context);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -36,7 +38,7 @@ class _DashboardLayoutState extends State<DashboardLayout>
             Row(
               children: [
                 // Sidebar
-                if (size.width >= 700) const Sidebar(),
+                if (breakpoint.largerThan(MOBILE)) const Sidebar(),
                 Expanded(
                   child: Column(
                     children: [
@@ -47,7 +49,8 @@ class _DashboardLayoutState extends State<DashboardLayout>
                       Expanded(
                           child: Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 10),
+                            horizontal: AppDimens.semiBig,
+                            vertical: AppDimens.semiMedium),
                         child: widget.navigationShell,
                       )),
                     ],
@@ -55,7 +58,7 @@ class _DashboardLayoutState extends State<DashboardLayout>
                 )
               ],
             ),
-            if (size.width < 700)
+            if (breakpoint.smallerThan(TABLET))
               AnimatedBuilder(
                 animation: SideMenuProvider.menuController,
                 builder: (context, _) => Stack(
@@ -66,8 +69,8 @@ class _DashboardLayoutState extends State<DashboardLayout>
                         child: GestureDetector(
                           onTap: SideMenuProvider.closeMenu,
                           child: Container(
-                            width: size.width,
-                            height: size.height,
+                            width: breakpoint.screenWidth,
+                            height: breakpoint.screenHeight,
                             color: Colors.black26,
                           ),
                         ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../common/theme/constants/app_dimens.dart';
+
 class BackgroundTwitter extends StatelessWidget {
   const BackgroundTwitter({super.key});
 
@@ -8,13 +10,14 @@ class BackgroundTwitter extends StatelessWidget {
     return Container(
       decoration: buildBoxDecoration(),
       child: Container(
-        constraints: const BoxConstraints(maxWidth: 400),
+        constraints:
+            const BoxConstraints(maxWidth: AppDimens.imgBackgroundWidth),
         child: const Center(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30),
+            padding: EdgeInsets.symmetric(horizontal: AppDimens.big),
             child: Image(
               image: AssetImage('assets/images/twitter_white_logo.png'),
-              width: 400,
+              width: AppDimens.imgBackgroundWidth,
             ),
           ),
         ),

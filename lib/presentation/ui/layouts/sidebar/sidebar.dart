@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../common/theme/constants/app_dimens.dart';
 import 'widgets/logo.dart';
 import 'widgets/menu_item.dart';
 import 'widgets/text_separator.dart';
@@ -10,14 +11,14 @@ class Sidebar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200,
+      width: AppDimens.sidemenuWidth,
       height: double.infinity,
       decoration: buildBoxDecoration(),
       child: ListView(
         physics: const ClampingScrollPhysics(),
         children: [
           const Logo(),
-          const SizedBox(height: 50),
+          const SizedBox(height: AppDimens.huge),
           const TextSeparator(text: 'main'),
           MenuItem(
               text: 'Dashboard',
@@ -48,7 +49,7 @@ class Sidebar extends StatelessWidget {
               text: 'Customers',
               icon: Icons.people_alt_outlined,
               onPressed: () {}),
-          const SizedBox(height: 30),
+          const SizedBox(height: AppDimens.semiBig),
           const TextSeparator(text: 'UI Elements'),
           MenuItem(
             text: 'Icons',
@@ -70,7 +71,7 @@ class Sidebar extends StatelessWidget {
             onPressed: () {},
             isActive: false,
           ),
-          const SizedBox(height: 50),
+          const SizedBox(height: AppDimens.huge),
           const TextSeparator(text: 'Exit'),
           MenuItem(
               text: 'Logout',
@@ -82,9 +83,14 @@ class Sidebar extends StatelessWidget {
   }
 
   BoxDecoration buildBoxDecoration() => const BoxDecoration(
-      gradient: LinearGradient(colors: [
-        Color(0xff092044),
-        Color(0xff092042),
-      ]),
-      boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 10)]);
+          gradient: LinearGradient(colors: [
+            Color(0xff092044),
+            Color(0xff092042),
+          ]),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: AppDimens.small,
+            )
+          ]);
 }

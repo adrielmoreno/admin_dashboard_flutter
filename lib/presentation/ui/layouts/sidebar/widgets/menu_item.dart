@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../common/theme/constants/app_dimens.dart';
+
 class MenuItem extends StatefulWidget {
   final String text;
   final IconData icon;
@@ -36,7 +38,10 @@ class _MenuItemState extends State<MenuItem> {
         child: InkWell(
           onTap: widget.isActive ? null : () => widget.onPressed(),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppDimens.big,
+              vertical: AppDimens.small,
+            ),
             child: MouseRegion(
               onEnter: (_) => setState(() => isHovered = true),
               onExit: (_) => setState(() => isHovered = false),
@@ -44,11 +49,12 @@ class _MenuItemState extends State<MenuItem> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Icon(widget.icon, color: Colors.white.withOpacity(0.3)),
-                  const SizedBox(width: 10),
+                  const SizedBox(width: AppDimens.semiMedium),
                   Text(
                     widget.text,
                     style: GoogleFonts.roboto(
-                        fontSize: 16, color: Colors.white.withOpacity(0.8)),
+                        fontSize: AppDimens.medium,
+                        color: Colors.white.withOpacity(0.8)),
                   )
                 ],
               ),

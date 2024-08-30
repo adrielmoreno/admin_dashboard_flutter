@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../common/theme/constants/app_dimens.dart';
+
 class NoPageFoundView extends StatelessWidget {
   const NoPageFoundView({super.key});
 
@@ -10,7 +12,7 @@ class NoPageFoundView extends StatelessWidget {
       child: Text(
         '404 - Página no encontrada',
         style: GoogleFonts.montserratAlternates(
-            fontSize: 50, fontWeight: FontWeight.bold),
+            fontSize: AppDimens.huge, fontWeight: FontWeight.bold),
       ),
     );
   }

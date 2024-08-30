@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../theme/constants/app_dimens.dart';
+
 class LinkText extends StatefulWidget {
   final String text;
   final Function? onPressed;
@@ -24,11 +26,12 @@ class _LinkTextState extends State<LinkText> {
         onEnter: (_) => setState(() => isHover = true),
         onExit: (_) => setState(() => isHover = false),
         child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          margin: const EdgeInsets.symmetric(
+              horizontal: AppDimens.semiMedium, vertical: AppDimens.extraSmall),
           child: Text(
             widget.text,
             style: TextStyle(
-                fontSize: 16,
+                fontSize: AppDimens.medium,
                 color: Colors.grey[700],
                 decoration:
                     isHover ? TextDecoration.underline : TextDecoration.none),

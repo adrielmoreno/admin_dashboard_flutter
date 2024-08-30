@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../common/theme/constants/app_dimens.dart';
+
 class TextSeparator extends StatelessWidget {
   final String text;
 
@@ -9,12 +11,14 @@ class TextSeparator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      margin: const EdgeInsets.only(bottom: 5),
+      padding: const EdgeInsets.symmetric(horizontal: AppDimens.medium),
+      margin: const EdgeInsets.only(bottom: AppDimens.extraSmall),
       child: Text(
         text,
         style: GoogleFonts.roboto(
-            color: Colors.white.withOpacity(0.3), fontSize: 12),
+          color: Colors.white.withOpacity(0.3),
+          fontSize: AppDimens.semiMedium,
+        ),
       ),
     );
   }

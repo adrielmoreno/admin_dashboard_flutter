@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../common/theme/constants/app_dimens.dart';
+
 class SplashLayuot extends StatelessWidget {
   const SplashLayuot({super.key});
 
@@ -12,7 +14,7 @@ class SplashLayuot extends StatelessWidget {
           children: [
             CircularProgressIndicator(),
             SizedBox(
-              height: 20,
+              height: AppDimens.semiBig,
             ),
             Text('Checking')
           ],

@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../../common/buttons/custom_outlined_button.dart';
 import '../../common/buttons/link_text.dart';
 import '../../common/inputs/custom_inputs.dart';
+import '../../common/theme/constants/app_dimens.dart';
 import '../../providers/register_form_provider.dart';
 
 class RegisterView extends StatelessWidget {
@@ -19,11 +20,12 @@ class RegisterView extends StatelessWidget {
         final registerFormProvider =
             Provider.of<RegisterFormProvider>(context, listen: false);
         return Container(
-          margin: const EdgeInsets.only(top: 40),
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          margin: const EdgeInsets.only(top: AppDimens.semiHuge),
+          padding: const EdgeInsets.symmetric(horizontal: AppDimens.semiBig),
           child: Center(
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 370),
+              constraints:
+                  const BoxConstraints(maxWidth: AppDimens.maxFormWidth),
               child: Form(
                   key: registerFormProvider.formKey,
                   child: SingleChildScrollView(
@@ -48,7 +50,7 @@ class RegisterView extends StatelessWidget {
                               icon: Icons.supervised_user_circle_sharp),
                         ),
 
-                        const SizedBox(height: 20),
+                        const SizedBox(height: AppDimens.medium),
 
                         // Email
                         TextFormField(
@@ -69,7 +71,7 @@ class RegisterView extends StatelessWidget {
                               icon: Icons.email_outlined),
                         ),
 
-                        const SizedBox(height: 20),
+                        const SizedBox(height: AppDimens.medium),
 
                         // Password
                         TextFormField(
@@ -94,7 +96,8 @@ class RegisterView extends StatelessWidget {
                               icon: Icons.lock_outline_rounded),
                         ),
 
-                        const SizedBox(height: 20),
+                        const SizedBox(height: AppDimens.medium),
+
                         CustomOutlinedButton(
                           onPressed: () {
                             registerFormProvider.validateForm();
@@ -102,7 +105,7 @@ class RegisterView extends StatelessWidget {
                           text: 'Crear cuenta',
                         ),
 
-                        const SizedBox(height: 20),
+                        const SizedBox(height: AppDimens.medium),
                         LinkText(
                           text: 'Ir al login',
                           onPressed: () {

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
+import '../../../common/theme/constants/app_dimens.dart';
 import 'widgets/background_twitter.dart';
 import 'widgets/custom_title.dart';
 import 'widgets/links_bar.dart';
@@ -12,7 +14,7 @@ class AuthLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    final breakpoint = ResponsiveBreakpoints.of(context);
 
     return Scaffold(
         backgroundColor: Colors.black,
@@ -21,7 +23,7 @@ class AuthLayout extends StatelessWidget {
           child: ListView(
             physics: const ClampingScrollPhysics(),
             children: [
-              (size.width > 1000)
+              breakpoint.largerThan(DESKTOP)
                   ? _DesktopBody(child: navigationShell)
                   : _MobileBody(child: navigationShell),
 
@@ -45,7 +47,7 @@ class _MobileBody extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          const SizedBox(height: 20),
+          const SizedBox(height: AppDimens.semiBig),
           const CustomTitle(),
           SizedBox(
             width: double.infinity,

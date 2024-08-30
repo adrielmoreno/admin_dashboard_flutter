@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../theme/constants/app_dimens.dart';
+
 class CustomOutlinedButton extends StatelessWidget {
   final Function onPressed;
   final String text;
@@ -17,18 +19,19 @@ class CustomOutlinedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
         style: ButtonStyle(
-          shape: WidgetStateProperty.all(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
+          shape: WidgetStateProperty.all(RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppDimens.big))),
           side: WidgetStateProperty.all(BorderSide(color: color)),
           backgroundColor: WidgetStateProperty.all(
               isFilled ? color.withOpacity(0.3) : Colors.transparent),
         ),
         onPressed: () => onPressed(),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: const EdgeInsets.symmetric(
+              horizontal: AppDimens.semiBig, vertical: AppDimens.semiMedium),
           child: Text(
             text,
-            style: const TextStyle(fontSize: 16),
+            style: const TextStyle(fontSize: AppDimens.medium),
           ),
         ));
   }

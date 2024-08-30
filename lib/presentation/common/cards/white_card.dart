@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../theme/constants/app_dimens.dart';
+
 class WhiteCard extends StatelessWidget {
   final String? title;
   final Widget child;
@@ -17,8 +19,8 @@ class WhiteCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: width,
-      margin: const EdgeInsets.all(8),
-      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.all(AppDimens.small),
+      padding: const EdgeInsets.all(AppDimens.semiMedium),
       decoration: buildBoxDecoration(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,7 +31,7 @@ class WhiteCard extends StatelessWidget {
               child: Text(
                 title!,
                 style: GoogleFonts.roboto(
-                    fontSize: 15, fontWeight: FontWeight.bold),
+                    fontSize: AppDimens.medium, fontWeight: FontWeight.bold),
               ),
             ),
             const Divider()
@@ -42,7 +44,7 @@ class WhiteCard extends StatelessWidget {
 
   BoxDecoration buildBoxDecoration() => BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(AppDimens.extraSmall),
           boxShadow: [
             BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 5)
           ]);
