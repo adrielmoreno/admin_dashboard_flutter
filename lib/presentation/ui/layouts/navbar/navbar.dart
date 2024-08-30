@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../providers/sidemenu_provider.dart';
 import 'widgets/navbar_avatar.dart';
 import 'widgets/notifications_indicator.dart';
 import 'widgets/search_text.dart';
@@ -17,10 +18,10 @@ class Navbar extends StatelessWidget {
       decoration: buildBoxDecoration(),
       child: Row(
         children: [
-          if (size.width <= 700)
-            IconButton(
-              icon: const Icon(Icons.menu_outlined),
-              onPressed: () {},
+          if (size.width < 700)
+            const IconButton(
+              icon: Icon(Icons.menu_outlined),
+              onPressed: SideMenuProvider.openMenu,
             ),
 
           const SizedBox(width: 5),
@@ -44,6 +45,14 @@ class Navbar extends StatelessWidget {
   }
 
   BoxDecoration buildBoxDecoration() => const BoxDecoration(
-      color: Colors.white,
-      boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 5)]);
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            offset: Offset(0, 5), // Mueve la sombra hacia abajo
+            blurRadius: 5, // Desenfoque de la sombra
+            spreadRadius: 0, // Expansión de la sombra (se puede ajustar)
+          ),
+        ],
+      );
 }

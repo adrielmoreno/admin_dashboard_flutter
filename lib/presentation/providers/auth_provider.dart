@@ -22,10 +22,7 @@ class AuthProvider extends ChangeNotifier {
   }
 
   Future<void> isAuthenticated() async {
-    authStatus = AuthStatus.checking;
-    notifyListeners();
-
-    await Future.delayed(const Duration(milliseconds: 2000));
+    await Future.delayed(const Duration(milliseconds: 500));
 
     final token = LocalStorageService.prefs.getString('token');
 

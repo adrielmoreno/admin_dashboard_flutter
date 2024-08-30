@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import '../../../../common/buttons/link_text.dart';
@@ -15,7 +17,7 @@ class LinksBar extends StatelessWidget {
         child: Wrap(
           alignment: WrapAlignment.center,
           children: [
-            LinkText(text: 'About', onPressed: () => print('about')),
+            LinkText(text: 'About', onPressed: () => log('about')),
             const LinkText(text: 'Help Center'),
             const LinkText(text: 'Terms of Service'),
             const LinkText(text: 'Privacy Policy'),
