@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../presentation/providers/auth_provider.dart';
 import '../../presentation/ui/layouts/auth/auth_layout.dart';
-import '../../presentation/ui/layouts/dashboard/dashoard_layout.dart';
+import '../../presentation/ui/layouts/dashboard/dashboard_layout.dart';
 import '../../presentation/ui/layouts/splash/splash_layuot.dart';
 import '../../presentation/ui/views/dashboard_view.dart';
 import '../../presentation/ui/views/login_view.dart';

@@ -5,6 +5,8 @@ import 'external/di/inject.dart';
 import 'external/router/app_router.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   await LocalStorageService.configurePrefs();
 
   Inject().setup();
