@@ -6,6 +6,7 @@ import '../../common/theme/constants/app_dimens.dart';
 
 class DashboardView extends StatelessWidget {
   const DashboardView({super.key});
+  static const String route = 'dashboard';
 
   @override
   Widget build(BuildContext context) {

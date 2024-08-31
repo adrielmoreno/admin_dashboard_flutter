@@ -12,6 +12,7 @@ import 'register_view.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
+  static const String route = 'login';
 
   @override
   Widget build(BuildContext context) {

@@ -4,6 +4,7 @@ import '../../../common/theme/constants/app_dimens.dart';
 
 class SplashLayuot extends StatelessWidget {
   const SplashLayuot({super.key});
+  static const String route = 'splash';
 
   @override
   Widget build(BuildContext context) {

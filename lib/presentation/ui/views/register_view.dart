@@ -11,6 +11,7 @@ import '../../providers/register_form_provider.dart';
 
 class RegisterView extends StatelessWidget {
   const RegisterView({super.key});
+  static const String route = 'register';
 
   @override
   Widget build(BuildContext context) {
