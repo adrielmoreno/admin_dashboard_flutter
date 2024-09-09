@@ -1,9 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import 'data/datasources/local/local_storage_service.dart';
 import 'external/di/inject.dart';
 import 'external/router/app_router.dart';
+import 'firebase_options.dart';
 import 'presentation/common/theme/constants/app_dimens.dart';
 
 void main() async {
@@ -12,6 +14,11 @@ void main() async {
   await LocalStorageService.configurePrefs();
 
   Inject().setup();
+
+  // Firebase
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   runApp(const MyApp());
 }

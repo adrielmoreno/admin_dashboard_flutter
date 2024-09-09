@@ -21,7 +21,7 @@ final _dashboardKey = GlobalKey<NavigatorState>();
 class AppRouter {
   static final GoRouter router = GoRouter(
     navigatorKey: _rootKey,
-    initialLocation: '/${DashboardView.route}',
+    initialLocation: '/${SplashLayuot.route}',
     refreshListenable: getIt<AuthProvider>(),
     redirect: (context, state) {
       final authProvider = getIt<AuthProvider>();
@@ -78,14 +78,11 @@ class AppRouter {
             navigatorKey: _dashboardKey,
             routes: [
               _buildParent(
-                  path: DashboardView.route,
-                  child: const DashboardView(),
-                  routes: [
-                    _buildChild(
-                        name: IconsView.route, child: const IconsView()),
-                    _buildChild(
-                        name: BlankView.route, child: const BlankView()),
-                  ]),
+                path: DashboardView.route,
+                child: const DashboardView(),
+              ),
+              _buildParent(path: IconsView.route, child: const IconsView()),
+              _buildParent(path: BlankView.route, child: const BlankView()),
             ],
           )
         ],

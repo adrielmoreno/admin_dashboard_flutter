@@ -6,7 +6,6 @@ import '../../../../../external/di/inject.dart';
 import '../../../../common/extensions/extenssions.dart';
 import '../../../../common/theme/constants/app_dimens.dart';
 import '../../../../providers/sidemenu_provider.dart';
-import '../../../views/dashboard_view.dart';
 
 class MenuItem extends StatefulWidget {
   final String text;
@@ -74,11 +73,11 @@ class _MenuItemState extends State<MenuItem> {
   }
 
   void _navigateTo(String route) {
-    if (route == DashboardView.route) {
-      context.go('/${DashboardView.route}');
-    } else {
-      context.goNamed(route);
-    }
+    // if (route == DashboardView.route) {
+    //   context.go('/${DashboardView.route}');
+    // } else {
+    context.replace('/$route');
+    // }
     SideMenuProvider.closeMenu();
   }
 }
