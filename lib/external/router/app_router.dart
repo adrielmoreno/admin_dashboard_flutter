@@ -33,12 +33,15 @@ class AppRouter {
 
       final isGoingToLoginOrRegister = state.uri.toString().contains('/auth');
 
+      final isSplash = state.uri.toString().contains(SplashLayuot.route);
+
       if (authStatus == AuthStatus.unAuthenticated &&
           !isGoingToLoginOrRegister) {
         return '/auth/${LoginView.route}';
       }
 
-      if (authStatus == AuthStatus.authenticated && isGoingToLoginOrRegister) {
+      if (authStatus == AuthStatus.authenticated &&
+          (isGoingToLoginOrRegister || isSplash)) {
         return '/${DashboardView.route}';
       }
 

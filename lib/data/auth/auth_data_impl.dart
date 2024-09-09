@@ -12,9 +12,8 @@ class AuthDataImpl implements AuthRepository {
   }
 
   @override
-  Future<bool> login(String user, String password) {
-    // TODO: implement login
-    throw UnimplementedError();
+  Future<void> login(String user, String password) {
+    return _authRemoteImpl.login(user, password);
   }
 
   @override
@@ -23,8 +22,7 @@ class AuthDataImpl implements AuthRepository {
   }
 
   @override
-  Future<String?> signUp(String email, String password) {
-    // TODO: implement signUp
-    throw UnimplementedError();
+  Future<void> signUp(String name, String email, String password) {
+    return _authRemoteImpl.signUp(name, email, password);
   }
 }

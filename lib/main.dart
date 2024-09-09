@@ -11,15 +11,15 @@ import 'presentation/common/theme/constants/app_dimens.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await SecureStorageService.init();
-
-  // DI
-  Inject().setup();
-
   // Firebase
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  await SecureStorageService.init();
+
+  // DI
+  Inject().setup();
 
   runApp(const MyApp());
 }

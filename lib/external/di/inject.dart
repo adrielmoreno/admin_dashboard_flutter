@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../data/auth/auth_data_impl.dart';
@@ -15,7 +16,8 @@ class Inject {
   }
 
   _setupAuth() {
-    getIt.registerFactory(() => AuthRemoteImpl());
+    getIt.registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);
+    getIt.registerFactory(() => AuthRemoteImpl(getIt.get()));
     getIt.registerFactory<AuthRepository>(() => AuthDataImpl(getIt.get()));
     getIt.registerSingleton(AuthViewModel(getIt.get()));
   }
