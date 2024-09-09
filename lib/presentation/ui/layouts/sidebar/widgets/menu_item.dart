@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../external/di/inject.dart';
@@ -10,11 +9,13 @@ import '../../../../providers/sidemenu_provider.dart';
 class MenuItem extends StatefulWidget {
   final String text;
   final IconData icon;
+  final void Function()? onPressed;
 
   const MenuItem({
     super.key,
     required this.text,
     required this.icon,
+    this.onPressed,
   });
 
   @override
@@ -42,7 +43,7 @@ class _MenuItemState extends State<MenuItem> {
               child: InkWell(
                 onTap: sideMenuProvider.currentPage == widget.text
                     ? null
-                    : () => _navigateTo(widget.text),
+                    : widget.onPressed,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: AppDimens.big,
@@ -70,14 +71,5 @@ class _MenuItemState extends State<MenuItem> {
             ),
           );
         });
-  }
-
-  void _navigateTo(String route) {
-    // if (route == DashboardView.route) {
-    //   context.go('/${DashboardView.route}');
-    // } else {
-    context.replace('/$route');
-    // }
-    SideMenuProvider.closeMenu();
   }
 }

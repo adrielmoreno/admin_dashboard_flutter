@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../presentation/providers/auth_provider.dart';
 import '../../presentation/providers/sidemenu_provider.dart';
 import '../../presentation/ui/layouts/auth/auth_layout.dart';
+import '../../presentation/ui/layouts/auth/pages/login_view.dart';
+import '../../presentation/ui/layouts/auth/pages/register_view.dart';
+import '../../presentation/ui/layouts/auth/view_model/auth_view_model.dart';
 import '../../presentation/ui/layouts/dashboard/dashboard_layout.dart';
 import '../../presentation/ui/layouts/splash/splash_layuot.dart';
 import '../../presentation/ui/views/blank_view.dart';
 import '../../presentation/ui/views/dashboard_view.dart';
 import '../../presentation/ui/views/icons_view.dart';
-import '../../presentation/ui/views/login_view.dart';
 import '../../presentation/ui/views/no_page_found_view.dart';
-import '../../presentation/ui/views/register_view.dart';
 import '../di/inject.dart';
 
 final _rootKey = GlobalKey<NavigatorState>();
@@ -22,9 +22,9 @@ class AppRouter {
   static final GoRouter router = GoRouter(
     navigatorKey: _rootKey,
     initialLocation: '/${SplashLayuot.route}',
-    refreshListenable: getIt<AuthProvider>(),
+    refreshListenable: getIt<AuthViewModel>(),
     redirect: (context, state) {
-      final authProvider = getIt<AuthProvider>();
+      final authProvider = getIt<AuthViewModel>();
       final sideMenuProvider = getIt<SideMenuProvider>();
 
       sideMenuProvider.setCurrentPageUrl(state.uri.toString().split('/').last);

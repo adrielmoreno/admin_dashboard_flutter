@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-import 'data/datasources/local/local_storage_service.dart';
+import 'data/datasources/local/secure_storage_service.dart';
 import 'external/di/inject.dart';
 import 'external/router/app_router.dart';
 import 'firebase_options.dart';
@@ -11,8 +11,9 @@ import 'presentation/common/theme/constants/app_dimens.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await LocalStorageService.configurePrefs();
+  await SecureStorageService.init();
 
+  // DI
   Inject().setup();
 
   // Firebase

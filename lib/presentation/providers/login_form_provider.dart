@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../external/di/inject.dart';
-import 'auth_provider.dart';
+import '../ui/layouts/auth/view_model/auth_view_model.dart';
 
 class LoginFormProvider extends ChangeNotifier {
-  final authProvider = getIt<AuthProvider>();
+  final authProvider = getIt<AuthViewModel>();
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String email = '';
