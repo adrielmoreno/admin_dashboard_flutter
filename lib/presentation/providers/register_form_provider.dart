@@ -11,13 +11,25 @@ class RegisterFormProvider extends ChangeNotifier {
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  String name = '';
-  String email = '';
-  String password = '';
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   validateForm() {
     if (formKey.currentState!.validate()) {
-      _authProvider.signUp(name, email, password);
+      _authProvider.signUp(
+        nameController.text,
+        emailController.text,
+        passwordController.text,
+      );
     } else {
       log('Invalid form');
     }

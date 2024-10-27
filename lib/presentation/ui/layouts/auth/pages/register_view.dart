@@ -42,8 +42,9 @@ class RegisterView extends StatelessWidget {
 
                             return null;
                           },
-                          onChanged: (value) =>
-                              registerFormProvider.email = value.trim(),
+                          controller: registerFormProvider.nameController,
+                          onFieldSubmitted: (_) =>
+                              registerFormProvider.validateForm(),
                           style: const TextStyle(color: Colors.white),
                           decoration: CustomInputs.loginInputDecoration(
                               hint: 'Ingrese su nombre',
@@ -63,8 +64,9 @@ class RegisterView extends StatelessWidget {
 
                             return null;
                           },
-                          onChanged: (value) =>
-                              registerFormProvider.email = value.trim(),
+                          controller: registerFormProvider.emailController,
+                          onFieldSubmitted: (_) =>
+                              registerFormProvider.validateForm(),
                           style: const TextStyle(color: Colors.white),
                           decoration: CustomInputs.loginInputDecoration(
                               hint: 'Ingrese su correo',
@@ -86,8 +88,9 @@ class RegisterView extends StatelessWidget {
 
                             return null;
                           },
-                          onChanged: (value) =>
-                              registerFormProvider.password = value,
+                          controller: registerFormProvider.passwordController,
+                          onFieldSubmitted: (_) =>
+                              registerFormProvider.validateForm(),
                           obscureText: true,
                           keyboardType: TextInputType.visiblePassword,
                           style: const TextStyle(color: Colors.white),

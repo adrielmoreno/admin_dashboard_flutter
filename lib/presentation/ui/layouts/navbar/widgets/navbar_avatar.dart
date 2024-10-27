@@ -12,7 +12,7 @@ class NavbarAvatar extends StatelessWidget {
         width: AppDimens.big,
         height: AppDimens.big,
         child: Image.network(
-            'https://cdn-icons-png.flaticon.com/512/147/147144.png'),
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXSjkWNYkyTK94NswJwN5f4kUJ7eQMn2GJ7w&s'),
       ),
     );
   }

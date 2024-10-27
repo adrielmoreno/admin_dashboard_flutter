@@ -37,6 +37,9 @@ class LoginView extends StatelessWidget {
                         // Email
                         TextFormField(
                           keyboardType: TextInputType.emailAddress,
+                          // TODO: Add error controll
+                          controller: loginFormProvider.email,
+
                           validator: (value) {
                             if (!EmailValidator.validate('${value?.trim()}')) {
                               return 'Email no válido';
@@ -44,8 +47,9 @@ class LoginView extends StatelessWidget {
 
                             return null;
                           },
-                          onChanged: (value) =>
-                              loginFormProvider.email = value.trim(),
+
+                          onFieldSubmitted: (_) =>
+                              loginFormProvider.validateForm(),
                           style: const TextStyle(color: Colors.white),
                           decoration: CustomInputs.loginInputDecoration(
                               hint: 'Ingrese su correo',
@@ -57,6 +61,7 @@ class LoginView extends StatelessWidget {
 
                         // Password
                         TextFormField(
+                          controller: loginFormProvider.password,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Ingrese su contraseña';
@@ -68,8 +73,8 @@ class LoginView extends StatelessWidget {
 
                             return null;
                           },
-                          onChanged: (value) =>
-                              loginFormProvider.password = value,
+                          onFieldSubmitted: (_) =>
+                              loginFormProvider.validateForm(),
                           obscureText: true,
                           keyboardType: TextInputType.visiblePassword,
                           style: const TextStyle(color: Colors.white),
