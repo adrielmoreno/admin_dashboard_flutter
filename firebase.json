@@ -4,7 +4,7 @@
             "android": {
                 "default": {
                     "projectId": "web-admin-dashboard-flutter",
-                    "appId": "1:353418007330:android:606d94c59a4569d02acb7b",
+                    "appId": "1:353418007330:android:4e50124f1ec6725c2acb7b",
                     "fileOutput": "android/app/google-services.json"
                 }
             },
@@ -20,7 +20,7 @@
                 "lib/firebase_options.dart": {
                     "projectId": "web-admin-dashboard-flutter",
                     "configurations": {
-                        "android": "1:353418007330:android:606d94c59a4569d02acb7b",
+                        "android": "1:353418007330:android:4e50124f1ec6725c2acb7b",
                         "ios": "1:353418007330:ios:f1f5598c0f3d51172acb7b",
                         "web": "1:353418007330:web:e1255a3f539e29dd2acb7b"
                     }
