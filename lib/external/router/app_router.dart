@@ -9,6 +9,7 @@ import '../../presentation/ui/layouts/auth/view_model/auth_view_model.dart';
 import '../../presentation/ui/layouts/dashboard/dashboard_layout.dart';
 import '../../presentation/ui/layouts/splash/splash_layuot.dart';
 import '../../presentation/ui/views/blank_view.dart';
+import '../../presentation/ui/views/categories/categories_view.dart';
 import '../../presentation/ui/views/dashboard_view.dart';
 import '../../presentation/ui/views/icons_view.dart';
 import '../../presentation/ui/views/no_page_found_view.dart';
@@ -42,7 +43,7 @@ class AppRouter {
 
       if (authStatus == AuthStatus.authenticated &&
           (isGoingToLoginOrRegister || isSplash)) {
-        return '/${DashboardView.route}';
+        return '/admin/${DashboardView.route}';
       }
 
       return null;
@@ -81,11 +82,25 @@ class AppRouter {
             navigatorKey: _dashboardKey,
             routes: [
               _buildParent(
-                path: DashboardView.route,
-                child: const DashboardView(),
-              ),
-              _buildParent(path: IconsView.route, child: const IconsView()),
-              _buildParent(path: BlankView.route, child: const BlankView()),
+                  path: 'admin',
+                  child: const DashboardView(),
+                  routes: [
+                    _buildChild(
+                        name: DashboardView.route,
+                        child: const DashboardView()),
+                    _buildChild(
+                      name: CategoriesView.route,
+                      child: const CategoriesView(),
+                    ),
+                    _buildChild(
+                      name: IconsView.route,
+                      child: const IconsView(),
+                    ),
+                    _buildChild(
+                      name: BlankView.route,
+                      child: const BlankView(),
+                    ),
+                  ]),
             ],
           )
         ],
