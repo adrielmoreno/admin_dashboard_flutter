@@ -4,7 +4,22 @@ import 'package:flutter/material.dart';
 extension WidgetExtensions on BuildContext {
   void showSnackBar(String message) {
     ScaffoldMessenger.of(this).showSnackBar(SnackBar(
-      content: Text(message),
+      content: Text(
+        message,
+        style: const TextStyle(color: Colors.white),
+        textAlign: TextAlign.center,
+      ),
+    ));
+  }
+
+  void showSnackBarError(String message) {
+    ScaffoldMessenger.of(this).showSnackBar(SnackBar(
+      backgroundColor: Colors.redAccent,
+      content: Text(
+        message,
+        style: const TextStyle(color: Colors.white),
+        textAlign: TextAlign.center,
+      ),
     ));
   }
 

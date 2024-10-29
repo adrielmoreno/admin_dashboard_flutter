@@ -5,6 +5,7 @@ import '../../../../external/di/inject.dart';
 import '../../../common/theme/constants/app_dimens.dart';
 import '../../../providers/sidemenu_provider.dart';
 import '../../views/blank_view.dart';
+import '../../views/categories/categories_view.dart';
 import '../../views/dashboard_view.dart';
 import '../../views/icons_view.dart';
 import '../auth/view_model/auth_view_model.dart';
@@ -46,9 +47,10 @@ class _SidebarState extends State<Sidebar> {
             text: 'Analytic',
             icon: Icons.show_chart_outlined,
           ),
-          const MenuItem(
-            text: 'Categories',
+          MenuItem(
+            text: CategoriesView.route,
             icon: Icons.layers_outlined,
+            onPressed: () => _navigateTo(CategoriesView.route),
           ),
           const MenuItem(
             text: 'Products',
@@ -97,11 +99,7 @@ class _SidebarState extends State<Sidebar> {
   }
 
   void _navigateTo(String route) {
-    // if (route == DashboardView.route) {
-    //   context.go('/${DashboardView.route}');
-    // } else {
-    context.replace('/$route');
-    // }
+    context.goNamed(route);
     SideMenuProvider.closeMenu();
   }
 

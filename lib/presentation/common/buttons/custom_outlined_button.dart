@@ -7,13 +7,16 @@ class CustomOutlinedButton extends StatelessWidget {
   final String text;
   final Color color;
   final bool isFilled;
+  final bool isTextWhite;
 
-  const CustomOutlinedButton(
-      {super.key,
-      required this.onPressed,
-      required this.text,
-      this.color = Colors.blue,
-      this.isFilled = false});
+  const CustomOutlinedButton({
+    super.key,
+    required this.onPressed,
+    required this.text,
+    this.color = Colors.blue,
+    this.isFilled = false,
+    this.isTextWhite = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,9 @@ class CustomOutlinedButton extends StatelessWidget {
               horizontal: AppDimens.semiBig, vertical: AppDimens.semiMedium),
           child: Text(
             text,
-            style: const TextStyle(fontSize: AppDimens.medium),
+            style: TextStyle(
+                fontSize: AppDimens.medium,
+                color: isTextWhite ? Colors.white : color),
           ),
         ));
   }

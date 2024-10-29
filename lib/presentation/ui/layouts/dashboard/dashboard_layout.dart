@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-import '../../../common/theme/constants/app_dimens.dart';
 import '../../../providers/sidemenu_provider.dart';
 import '../navbar/navbar.dart';
 import '../sidebar/sidebar.dart';
@@ -48,9 +47,6 @@ class _DashboardLayoutState extends State<DashboardLayout>
                       // View
                       Expanded(
                           child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: AppDimens.semiBig,
-                            vertical: AppDimens.semiMedium),
                         child: widget.navigationShell,
                       )),
                     ],
