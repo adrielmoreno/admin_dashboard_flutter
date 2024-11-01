@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../app/di/inject.dart';
 import '../../../core/presentation/common/buttons/custom_icon_button.dart';
@@ -75,8 +76,47 @@ class _CategoriesViewState extends State<CategoriesView> {
               DataColumn(label: Text('Acciones')),
               DataColumn(label: Text('ID')),
             ],
-            source:
-                CategoriesDatasource(_categoriesVewModel.categories, context),
+            source: CategoriesDatasource(
+              categories: _categoriesVewModel.categories,
+              // EDIT
+              onEdit: (category) {
+                {
+                  // TODO: Will ad scroll
+                  showModalBottomSheet(
+                    backgroundColor: Colors.transparent,
+                    context: context,
+                    builder: (_) => CategoryModal(
+                      category: category,
+                    ),
+                  );
+                }
+              },
+              // DELETE
+              onDelete: (category) {
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: const Text('¿Está seguro de borrarlo?'),
+                    content: Text('¿Borrar definitivamente ${category.name}?'),
+                    actions: [
+                      TextButton(
+                          onPressed: () {
+                            context.pop();
+                          },
+                          child: const Text('No')),
+                      TextButton(
+                          onPressed: () async {
+                            getIt<CategoriesViewModel>()
+                                .deleteCategory(category.id);
+
+                            context.pop();
+                          },
+                          child: const Text('Si, borrar')),
+                    ],
+                  ),
+                );
+              },
+            ),
             onRowsPerPageChanged: (value) {
               setState(() {
                 _rowsPerPgee = value;
