@@ -41,3 +41,11 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Firebase options
+firebase_options.dart
+# iOS
+firepit-log.txt
+GoogleService-Info.plist
+# Android
+google-services.json
