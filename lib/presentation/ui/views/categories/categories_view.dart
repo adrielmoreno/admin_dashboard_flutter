@@ -70,10 +70,10 @@ class _CategoriesViewState extends State<CategoriesView> {
               )
             ],
             columns: const [
-              DataColumn(label: Text('ID')),
               DataColumn(label: Text('Categoría')),
               DataColumn(label: Text('Autor')),
               DataColumn(label: Text('Acciones')),
+              DataColumn(label: Text('ID')),
             ],
             source:
                 CategoriesDatasource(_categoriesVewModel.categories, context),

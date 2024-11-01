@@ -74,10 +74,10 @@ class _CategoryModalState extends State<CategoryModal> {
             alignment: Alignment.center,
             child: CustomOutlinedButton(
               onPressed: () {
-                if (id == null) {
+                if (id == null && name != null) {
                   _categoryViewModel.newCategory(name!);
                   context.showSnackBar('!$name cread@');
-                } else {
+                } else if (widget.category != null) {
                   final category = widget.category
                       ?.copyWith(name: name, updatedAt: DateTime.now());
 

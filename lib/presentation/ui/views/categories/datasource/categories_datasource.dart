@@ -17,57 +17,60 @@ class CategoriesDatasource extends DataTableSource {
     return DataRow.byIndex(
       index: index,
       cells: [
-        DataCell(Text(category.id)),
         DataCell(Text(category.name)),
         DataCell(Text(category.creator)),
-        DataCell(Row(
-          children: [
-            IconButton(
-              onPressed: () {
-                showModalBottomSheet(
-                  backgroundColor: Colors.transparent,
-                  context: _context,
-                  builder: (_) => CategoryModal(
-                    category: category,
-                  ),
-                );
-              },
-              icon: const Icon(Icons.edit_outlined),
-            ),
-            IconButton(
-              onPressed: () {
-                final dialog = AlertDialog(
-                  title: const Text('¿Está seguro de borrarlo?'),
-                  content: Text('¿Borrar definitivamente ${category.name}?'),
-                  actions: [
-                    TextButton(
-                        onPressed: () {
-                          _context.pop();
-                        },
-                        child: const Text('No')),
-                    TextButton(
-                        onPressed: () async {
-                          getIt<CategoriesViewModel>()
-                              .deleteCategory(category.id);
-
-                          _context.pop();
-                        },
-                        child: const Text('Si, borrar')),
-                  ],
-                );
-
-                showDialog(
-                  context: _context,
-                  builder: (context) => dialog,
-                );
-              },
-              icon: const Icon(
-                Icons.delete_outline,
-                color: Colors.red,
+        DataCell(
+          Row(
+            children: [
+              IconButton(
+                onPressed: () {
+                  // TODO: Will ad scroll
+                  showModalBottomSheet(
+                    backgroundColor: Colors.transparent,
+                    context: _context,
+                    builder: (_) => CategoryModal(
+                      category: category,
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.edit_outlined),
               ),
-            ),
-          ],
-        )),
+              IconButton(
+                onPressed: () {
+                  final dialog = AlertDialog(
+                    title: const Text('¿Está seguro de borrarlo?'),
+                    content: Text('¿Borrar definitivamente ${category.name}?'),
+                    actions: [
+                      TextButton(
+                          onPressed: () {
+                            _context.pop();
+                          },
+                          child: const Text('No')),
+                      TextButton(
+                          onPressed: () async {
+                            getIt<CategoriesViewModel>()
+                                .deleteCategory(category.id);
+
+                            _context.pop();
+                          },
+                          child: const Text('Si, borrar')),
+                    ],
+                  );
+
+                  showDialog(
+                    context: _context,
+                    builder: (context) => dialog,
+                  );
+                },
+                icon: const Icon(
+                  Icons.delete_outline,
+                  color: Colors.red,
+                ),
+              ),
+            ],
+          ),
+        ),
+        DataCell(Text(category.id)),
       ],
     );
   }
