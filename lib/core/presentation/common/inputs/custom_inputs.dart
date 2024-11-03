@@ -4,7 +4,7 @@ class CustomInputs {
   static InputDecoration loginInputDecoration({
     required String hint,
     required String label,
-    required IconData icon,
+    required IconData? icon,
   }) {
     return InputDecoration(
       border: OutlineInputBorder(

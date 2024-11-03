@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../../app/di/inject.dart';
 import '../../../../../features/auth/presentation/view_model/auth_view_model.dart';
 import '../../../../../features/category/presentation/categories_view.dart';
+import '../../../../../features/product/presentation/products_view.dart';
 import '../../../common/theme/constants/app_dimens.dart';
 import '../../views/blank_view.dart';
 import '../../views/dashboard_view.dart';
@@ -52,16 +53,17 @@ class _SidebarState extends State<Sidebar> {
             icon: Icons.layers_outlined,
             onPressed: () => _navigateTo(CategoriesView.route),
           ),
-          const MenuItem(
-            text: 'Products',
+          MenuItem(
+            text: ProductsView.route,
             icon: Icons.dashboard_outlined,
+            onPressed: () => _navigateTo(ProductsView.route),
           ),
           const MenuItem(
             text: 'Discount',
             icon: Icons.attach_money_outlined,
           ),
           const MenuItem(
-            text: 'Customers',
+            text: 'Users',
             icon: Icons.people_alt_outlined,
           ),
           const SizedBox(height: AppDimens.semiBig),

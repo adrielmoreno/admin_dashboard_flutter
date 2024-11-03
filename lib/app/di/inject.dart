@@ -11,6 +11,10 @@ import '../../features/category/data/categories_data_impl.dart';
 import '../../features/category/data/remote/categories_remote_impl.dart';
 import '../../features/category/data/repositories/categories_repository.dart';
 import '../../features/category/presentation/view_model/categories_view_model.dart';
+import '../../features/product/data/products_data_impl.dart';
+import '../../features/product/data/remote/products_remote_impl.dart';
+import '../../features/product/data/repositories/products_repository.dart';
+import '../../features/product/presentation/view_model/products_view_model.dart';
 
 final getIt = GetIt.instance;
 
@@ -20,6 +24,7 @@ class Inject {
     _setupAuth();
     _setupSideMenu();
     _setupCategories();
+    _setupProducts();
   }
 
   _setupAuth() {
@@ -39,6 +44,14 @@ class Inject {
     getIt.registerFactory<CategoriesRepository>(
         () => CategoriesDataImpl(getIt.get()));
     getIt.registerSingleton(CategoriesViewModel(getIt.get()));
+  }
+
+  _setupProducts() {
+    getIt.registerFactory<ProductsRemoteImpl>(
+        () => ProductsRemoteImpl(getIt.get()));
+    getIt.registerFactory<ProductsRepository>(
+        () => ProductsDataImpl(getIt.get()));
+    getIt.registerSingleton(ProductsViewModel(getIt.get()));
   }
 
   _setupSideMenu() {

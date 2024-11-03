@@ -13,6 +13,7 @@ import '../../features/auth/presentation/view_model/auth_view_model.dart';
 import '../../features/auth/presentation/views/login_view.dart';
 import '../../features/auth/presentation/views/register_view.dart';
 import '../../features/category/presentation/categories_view.dart';
+import '../../features/product/presentation/products_view.dart';
 import '../di/inject.dart';
 
 final _rootKey = GlobalKey<NavigatorState>();
@@ -93,6 +94,10 @@ class AppRouter {
                       child: const CategoriesView(),
                     ),
                     _buildChild(
+                      name: ProductsView.route,
+                      child: const ProductsView(),
+                    ),
+                    _buildChild(
                       name: IconsView.route,
                       child: const IconsView(),
                     ),
@@ -112,11 +117,13 @@ class AppRouter {
   static GoRoute _buildChild({
     required String name,
     required Widget child,
+    List<RouteBase>? routes,
   }) {
     return GoRoute(
       name: name,
       path: name,
       pageBuilder: (context, state) => _fadeTransition(child),
+      routes: routes ?? [],
     );
   }
 

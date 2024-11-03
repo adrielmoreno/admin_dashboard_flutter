@@ -2,21 +2,26 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
 import '../../../features/category/domain/entities/category_response.dart';
+import '../../../features/product/domain/entities/product_response.dart';
+import '../../../features/suplier/domain/entities/suplier.dart';
 
 enum FBCollection {
-  CATEGORIES,
-  PRODUCTS,
-  USERS,
+  categories,
+  products,
+  suppliers,
+  users,
 }
 
 class FirebaseServices {
-  static final _firestore = FirebaseFirestore.instance;
+  static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  static const String _debugPrefix = "debug_";
+  static const String _prodPrefix = "prod_";
 
   FirebaseServices() {
-    initializeSettings();
+    _initializeSettings();
   }
 
-  Future<void> initializeSettings() async {
+  Future<void> _initializeSettings() async {
     _firestore.settings = const Settings(
       persistenceEnabled: true,
       cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED,
@@ -24,9 +29,8 @@ class FirebaseServices {
   }
 
   String _getCollectionName(FBCollection collection) {
-    String envPrefix = kDebugMode ? "debug_" : "prod_";
-    String collectionName = collection.name.toLowerCase();
-    return "$envPrefix$collectionName";
+    const envPrefix = kDebugMode ? _debugPrefix : _prodPrefix;
+    return "$envPrefix${collection.name}";
   }
 
   CollectionReference<T> getCollectionWithConverter<T>({
@@ -44,23 +48,26 @@ class FirebaseServices {
         );
   }
 
-  CollectionReference<Map<String, dynamic>> get products =>
-      _firestore.collection(_getCollectionName(FBCollection.PRODUCTS));
+  CollectionReference<ProductResponse> get products =>
+      getCollectionWithConverter(
+        collection: FBCollection.products,
+        fromMap: (data) => ProductResponse.fromMap(data),
+        toMap: (product) => product.toMap(),
+      );
 
   CollectionReference<CategoryResponse> get categories =>
       getCollectionWithConverter(
-        collection: FBCollection.CATEGORIES,
+        collection: FBCollection.categories,
         fromMap: (data) => CategoryResponse.fromMap(data),
         toMap: (category) => category.toMap(),
       );
 
-  CollectionReference<Map<String, dynamic>> get users =>
-      _firestore.collection(_getCollectionName(FBCollection.USERS));
+  CollectionReference<Supplier> get suppliers => getCollectionWithConverter(
+        collection: FBCollection.suppliers,
+        fromMap: (data) => Supplier.fromMap(data),
+        toMap: (supplier) => supplier.toMap(),
+      );
 
-  Future<DocumentReference> getReference(
-      String documentId, FBCollection collection) async {
-    return _firestore
-        .collection(_getCollectionName(collection))
-        .doc(documentId);
-  }
+  CollectionReference<Map<String, dynamic>> get users =>
+      _firestore.collection(_getCollectionName(FBCollection.users));
 }
