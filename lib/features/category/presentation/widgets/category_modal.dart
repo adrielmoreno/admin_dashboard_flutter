@@ -31,69 +31,76 @@ class _CategoryModalState extends State<CategoryModal> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(AppDimens.semiBig),
-      width: double.infinity,
-      decoration: buidBoxDecoration(),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                widget.category?.name ?? 'Nueva categoría',
-                style: CustomLabels.h1.copyWith(color: Colors.white),
+    return DraggableScrollableSheet(
+        expand: true,
+        builder: (context, controller) {
+          return Container(
+            padding: const EdgeInsets.all(AppDimens.semiBig),
+            decoration: buidBoxDecoration(),
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              controller: controller,
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        widget.category?.name ?? 'Nueva categoría',
+                        style: CustomLabels.h1.copyWith(color: Colors.white),
+                      ),
+                      IconButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        icon: const Icon(
+                          Icons.close_outlined,
+                          color: Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
+                  Divider(color: Colors.white.withOpacity(0.3)),
+                  const SizedBox(height: AppDimens.medium),
+
+                  // Inputs
+                  TextFormField(
+                    initialValue: widget.category?.name,
+                    onChanged: (value) => name = value,
+                    decoration: CustomInputs.loginInputDecoration(
+                      hint: 'Nombre de la categoría',
+                      label: 'Categoría',
+                      icon: Icons.new_label_outlined,
+                    ),
+                    style: const TextStyle(color: Colors.white),
+                  ),
+
+                  // Button
+                  Container(
+                    margin: const EdgeInsets.only(top: AppDimens.semiBig),
+                    alignment: Alignment.center,
+                    child: CustomOutlinedButton(
+                      onPressed: () {
+                        if (id == null && name != null) {
+                          _categoryViewModel.newCategory(name!);
+                          context.showSnackBar('!$name cread@');
+                        } else if (widget.category != null) {
+                          final category = widget.category
+                              ?.copyWith(name: name, updatedAt: DateTime.now());
+
+                          _categoryViewModel.updateCategory(category!);
+                          context.showSnackBarError('!$name actualizad@');
+                        }
+                        Navigator.of(context).pop();
+                      },
+                      text: id != null ? 'Editar' : 'Guardar',
+                      color: Colors.white,
+                      isTextWhite: true,
+                    ),
+                  )
+                ],
               ),
-              IconButton(
-                onPressed: () => Navigator.of(context).pop(),
-                icon: const Icon(
-                  Icons.close_outlined,
-                  color: Colors.white,
-                ),
-              )
-            ],
-          ),
-          Divider(color: Colors.white.withOpacity(0.3)),
-          const SizedBox(height: AppDimens.semiBig),
-
-          // Inputs
-          TextFormField(
-            initialValue: widget.category?.name,
-            onChanged: (value) => name = value,
-            decoration: CustomInputs.loginInputDecoration(
-              hint: 'Nombre de la categoría',
-              label: 'Categoría',
-              icon: Icons.new_label_outlined,
             ),
-            style: const TextStyle(color: Colors.white),
-          ),
-
-          // Button
-          Container(
-            margin: const EdgeInsets.only(top: AppDimens.big),
-            alignment: Alignment.center,
-            child: CustomOutlinedButton(
-              onPressed: () {
-                if (id == null && name != null) {
-                  _categoryViewModel.newCategory(name!);
-                  context.showSnackBar('!$name cread@');
-                } else if (widget.category != null) {
-                  final category = widget.category
-                      ?.copyWith(name: name, updatedAt: DateTime.now());
-
-                  _categoryViewModel.updateCategory(category!);
-                  context.showSnackBarError('!$name actualizad@');
-                }
-                Navigator.of(context).pop();
-              },
-              text: id != null ? 'Editar' : 'Guardar',
-              color: Colors.white,
-              isTextWhite: true,
-            ),
-          )
-        ],
-      ),
-    );
+          );
+        });
   }
 
   BoxDecoration buidBoxDecoration() {

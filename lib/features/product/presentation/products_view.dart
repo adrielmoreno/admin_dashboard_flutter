@@ -5,41 +5,51 @@ import '../../../app/di/inject.dart';
 import '../../../core/presentation/common/buttons/custom_icon_button.dart';
 import '../../../core/presentation/common/labels/custom_labels.dart';
 import '../../../core/presentation/common/theme/constants/app_dimens.dart';
-import 'datasource/categories_datasource.dart';
-import 'view_model/categories_view_model.dart';
-import 'widgets/category_modal.dart';
+import 'datasource/products_datasource.dart';
+import 'view_model/products_view_model.dart';
+import 'widgets/product_modal.dart';
 
-class CategoriesView extends StatefulWidget {
-  const CategoriesView({super.key});
-  static const String route = 'categories';
+class ProductsView extends StatefulWidget {
+  const ProductsView({super.key});
+  static const String route = 'products';
 
   @override
-  State<CategoriesView> createState() => _CategoriesViewState();
+  State<ProductsView> createState() => _ProductsViewState();
 }
 
-class _CategoriesViewState extends State<CategoriesView> {
+class _ProductsViewState extends State<ProductsView> {
   int? _rowsPerPgee = PaginatedDataTable.defaultRowsPerPage;
-  final _categoriesVewModel = getIt<CategoriesViewModel>();
+  final _productsVewModel = getIt<ProductsViewModel>();
   @override
   void initState() {
     super.initState();
-    _categoriesVewModel.addListener(() {
+    _productsVewModel.addListener(_onUpdate);
+    _productsVewModel.getProducts();
+  }
+
+  @override
+  void dispose() {
+    _productsVewModel.addListener(_onUpdate);
+    super.dispose();
+  }
+
+  void _onUpdate() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
         setState(() {});
       }
     });
-    _categoriesVewModel.getCategories();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_categoriesVewModel.categories.isEmpty) {
-      return const Center(
-        child: CircularProgressIndicator(
-          color: Colors.blue,
-        ),
-      );
-    }
+    // if (_productsVewModel.products.isEmpty) {
+    //   return const Center(
+    //     child: CircularProgressIndicator(
+    //       color: Colors.blue,
+    //     ),
+    //   );
+    // }
 
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -48,13 +58,13 @@ class _CategoriesViewState extends State<CategoriesView> {
         physics: const ClampingScrollPhysics(),
         children: [
           Text(
-            'Categories View',
+            'Productos',
             style: CustomLabels.h1,
           ),
           const SizedBox(height: AppDimens.semiMedium),
           PaginatedDataTable(
             header: const Text(
-              "Categorías disponibles",
+              "Productos disponibles",
               maxLines: 2,
             ),
             actions: [
@@ -63,7 +73,7 @@ class _CategoriesViewState extends State<CategoriesView> {
                   showModalBottomSheet(
                     backgroundColor: Colors.transparent,
                     context: context,
-                    builder: (_) => const CategoryModal(),
+                    builder: (_) => const ProductModal(),
                   );
                 },
                 text: 'Nuevo',
@@ -71,33 +81,39 @@ class _CategoriesViewState extends State<CategoriesView> {
               )
             ],
             columns: const [
-              DataColumn(label: Text('Categoría')),
-              DataColumn(label: Text('Autor')),
+              DataColumn(label: Text('Nombe')),
+              DataColumn(label: Text('Empaque')),
+              DataColumn(label: Text('Medida')),
+              DataColumn(label: Text('Precio Empaque')),
+              DataColumn(label: Text('Precio Unidad')),
+              DataColumn(label: Text('IVA')),
+              DataColumn(label: Text('Precio/U+IVA')),
+              DataColumn(label: Text('Suplidor')),
               DataColumn(label: Text('Acciones')),
               DataColumn(label: Text('ID')),
             ],
-            source: CategoriesDatasource(
-              categories: _categoriesVewModel.categories,
+            source: ProductsDatasource(
+              products: _productsVewModel.products,
               // EDIT
-              onEdit: (category) {
+              onEdit: (product) {
                 {
                   // TODO: Will ad scroll
                   showModalBottomSheet(
                     backgroundColor: Colors.transparent,
                     context: context,
-                    builder: (_) => CategoryModal(
-                      category: category,
+                    builder: (_) => ProductModal(
+                      product: product,
                     ),
                   );
                 }
               },
               // DELETE
-              onDelete: (category) {
+              onDelete: (product) {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
                     title: const Text('¿Está seguro de borrarlo?'),
-                    content: Text('¿Borrar definitivamente ${category.name}?'),
+                    content: Text('¿Borrar definitivamente ${product.name}?'),
                     actions: [
                       TextButton(
                           onPressed: () {
@@ -106,8 +122,8 @@ class _CategoriesViewState extends State<CategoriesView> {
                           child: const Text('No')),
                       TextButton(
                           onPressed: () async {
-                            getIt<CategoriesViewModel>()
-                                .deleteCategory(category.id);
+                            getIt<ProductsViewModel>()
+                                .deleteProduct(product.id);
 
                             context.pop();
                           },
@@ -122,7 +138,7 @@ class _CategoriesViewState extends State<CategoriesView> {
                 _rowsPerPgee = value;
               });
             },
-            rowsPerPage: _rowsPerPgee!,
+            rowsPerPage: _rowsPerPgee ?? 0,
           )
         ],
       ),
