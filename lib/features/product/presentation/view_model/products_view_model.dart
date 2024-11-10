@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../suplier/domain/entities/suplier.dart';
+import '../../../suplier/domain/entities/suplier_response.dart';
 import '../../data/repositories/products_repository.dart';
 import '../../domain/entities/product_response.dart';
 
@@ -55,7 +55,7 @@ class ProductsViewModel extends ChangeNotifier {
   final _priceUnitController = TextEditingController();
   final _ivaController = TextEditingController();
   final _pricePlusIVA = TextEditingController();
-  Supplier? _lastSupplier;
+  SupplierResponse? _lastSupplier;
   double _iva = 0.0;
   bool _isEnabled = true;
 
@@ -67,7 +67,7 @@ class ProductsViewModel extends ChangeNotifier {
   TextEditingController get priceUnitController => _priceUnitController;
   TextEditingController get ivaController => _ivaController;
   TextEditingController get pricePlusIVA => _pricePlusIVA;
-  Supplier? get lastSupplier => _lastSupplier;
+  SupplierResponse? get lastSupplier => _lastSupplier;
   double get iva => _iva;
   bool get isEnabled => _isEnabled;
 
@@ -76,7 +76,7 @@ class ProductsViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  set lastSupplier(Supplier? value) {
+  set lastSupplier(SupplierResponse? value) {
     _lastSupplier = value;
     notifyListeners();
   }

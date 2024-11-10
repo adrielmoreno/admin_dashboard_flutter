@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Supplier {
+class SupplierResponse {
   final String id;
   final String name;
   final TypeOfSupplier type;
@@ -9,7 +9,7 @@ class Supplier {
   final String? contactName;
   final String? phone;
 
-  Supplier({
+  SupplierResponse({
     required this.id,
     required this.name,
     required this.type,
@@ -30,8 +30,8 @@ class Supplier {
     };
   }
 
-  factory Supplier.fromMap(Map<String, dynamic> map) {
-    return Supplier(
+  factory SupplierResponse.fromMap(Map<String, dynamic> map) {
+    return SupplierResponse(
       id: map['id'] ?? '',
       name: map['name'] ?? '',
       type: TypeOfSupplier.values.byName(map['type'] ?? 'consumer'),
@@ -45,12 +45,14 @@ class Supplier {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is Supplier && runtimeType == other.runtimeType && id == other.id;
+      other is SupplierResponse &&
+          runtimeType == other.runtimeType &&
+          id == other.id;
 
   @override
   int get hashCode => id.hashCode;
 
-  Supplier copyWith({
+  SupplierResponse copyWith({
     String? id,
     String? name,
     TypeOfSupplier? type,
@@ -59,7 +61,7 @@ class Supplier {
     String? contactName,
     String? phone,
   }) {
-    return Supplier(
+    return SupplierResponse(
       id: id ?? this.id,
       name: name ?? this.name,
       type: type ?? this.type,
