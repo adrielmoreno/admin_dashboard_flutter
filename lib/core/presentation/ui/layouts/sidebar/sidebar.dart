@@ -5,6 +5,7 @@ import '../../../../../app/di/inject.dart';
 import '../../../../../features/auth/presentation/view_model/auth_view_model.dart';
 import '../../../../../features/category/presentation/categories_view.dart';
 import '../../../../../features/product/presentation/products_view.dart';
+import '../../../../../features/suplier/presentation/suppliers_view.dart';
 import '../../../common/theme/constants/app_dimens.dart';
 import '../../views/blank_view.dart';
 import '../../views/dashboard_view.dart';
@@ -57,6 +58,11 @@ class _SidebarState extends State<Sidebar> {
             text: ProductsView.route,
             icon: Icons.dashboard_outlined,
             onPressed: () => _navigateTo(ProductsView.route),
+          ),
+          MenuItem(
+            text: SuppliersView.route,
+            icon: Icons.handshake_outlined,
+            onPressed: () => _navigateTo(SuppliersView.route),
           ),
           const MenuItem(
             text: 'Discount',

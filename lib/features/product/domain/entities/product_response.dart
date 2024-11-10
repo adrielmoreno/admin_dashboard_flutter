@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../../../app/di/inject.dart';
 import '../../../../core/data/db_services/firebase_services.dart';
-import '../../../suplier/domain/entities/suplier.dart';
+import '../../../suplier/domain/entities/suplier_response.dart';
 
 class ProductResponse {
   final String id;
@@ -15,7 +15,7 @@ class ProductResponse {
   final double priceUnit;
   final double iva;
   final double pricePlusIVA;
-  final DocumentReference<Supplier>? lastSupplier;
+  final DocumentReference<SupplierResponse>? lastSupplier;
 
   ProductResponse({
     required this.id,
@@ -76,7 +76,7 @@ class ProductResponse {
     double? priceUnit,
     double? iva,
     double? pricePlusIVA,
-    DocumentReference<Supplier>? lastSupplier,
+    DocumentReference<SupplierResponse>? lastSupplier,
   }) {
     return ProductResponse(
       id: id ?? this.id,

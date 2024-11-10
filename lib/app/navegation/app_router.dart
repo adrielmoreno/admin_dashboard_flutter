@@ -14,6 +14,7 @@ import '../../features/auth/presentation/views/login_view.dart';
 import '../../features/auth/presentation/views/register_view.dart';
 import '../../features/category/presentation/categories_view.dart';
 import '../../features/product/presentation/products_view.dart';
+import '../../features/suplier/presentation/suppliers_view.dart';
 import '../di/inject.dart';
 
 final _rootKey = GlobalKey<NavigatorState>();
@@ -104,6 +105,10 @@ class AppRouter {
                     _buildChild(
                       name: BlankView.route,
                       child: const BlankView(),
+                    ),
+                    _buildChild(
+                      name: SuppliersView.route,
+                      child: const SuppliersView(),
                     ),
                   ]),
             ],

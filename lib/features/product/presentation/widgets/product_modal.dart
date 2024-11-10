@@ -8,7 +8,7 @@ import '../../../../core/presentation/common/extensions/extenssions.dart';
 import '../../../../core/presentation/common/inputs/custom_inputs.dart';
 import '../../../../core/presentation/common/labels/custom_labels.dart';
 import '../../../../core/presentation/common/theme/constants/app_dimens.dart';
-import '../../../suplier/domain/entities/suplier.dart';
+import '../../../suplier/domain/entities/suplier_response.dart';
 import '../../domain/entities/product_response.dart';
 import '../view_model/products_view_model.dart';
 
@@ -211,7 +211,7 @@ class _ProductModalState extends State<ProductModal> {
       future: getIt<FirebaseServices>().suppliers.get(),
       builder: (context, snap) {
         final suppliers = snap.data?.docs.map((doc) => doc.data()).toList();
-        return DropdownButtonFormField<Supplier>(
+        return DropdownButtonFormField<SupplierResponse>(
           dropdownColor: Colors.blue,
           isExpanded: true,
           value: _productViewModel.lastSupplier,
@@ -220,7 +220,7 @@ class _ProductModalState extends State<ProductModal> {
             style: TextStyle(color: Colors.white),
           ),
           items: suppliers?.map((supplier) {
-            return DropdownMenuItem<Supplier>(
+            return DropdownMenuItem<SupplierResponse>(
               enabled: _productViewModel.isEnabled,
               value: supplier,
               child: Text(

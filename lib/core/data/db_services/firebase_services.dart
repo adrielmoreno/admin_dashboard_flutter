@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 
 import '../../../features/category/domain/entities/category_response.dart';
 import '../../../features/product/domain/entities/product_response.dart';
-import '../../../features/suplier/domain/entities/suplier.dart';
+import '../../../features/suplier/domain/entities/suplier_response.dart';
 
 enum FBCollection {
   categories,
@@ -62,9 +62,10 @@ class FirebaseServices {
         toMap: (category) => category.toMap(),
       );
 
-  CollectionReference<Supplier> get suppliers => getCollectionWithConverter(
+  CollectionReference<SupplierResponse> get suppliers =>
+      getCollectionWithConverter(
         collection: FBCollection.suppliers,
-        fromMap: (data) => Supplier.fromMap(data),
+        fromMap: (data) => SupplierResponse.fromMap(data),
         toMap: (supplier) => supplier.toMap(),
       );
 
